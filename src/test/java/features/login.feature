@@ -7,4 +7,4 @@ Feature: Login
     Then user enters username
     And user enters password
     And user clicks on Login button
-    Then user should see the the dashboard with name
+    Then user is successfully logged in

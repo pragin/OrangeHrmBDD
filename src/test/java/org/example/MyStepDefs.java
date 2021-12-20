@@ -3,10 +3,12 @@ package org.example;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class MyStepDefs {
 
     HomePage homePage = new HomePage();
+    DashBoard dashBoard = new DashBoard();
 
     @Given("user is on homepage")
     public void user_is_on_homepage() {
@@ -28,10 +30,27 @@ public class MyStepDefs {
         homePage.clickLoginButton();
     }
 
-    @Then("user should see the the dashboard with name")
-    public void user_should_see_the_the_dashboard_with_name() {
+    @Given("user is successfully logged in")
+    public void user_is_successfully_logged_in() {
+        dashBoard.verifyUserIsOnDashBoardPage();
+    }
+    @When("user clicks on logout link")
+    public void user_clicks_on_logout_link() {
+        dashBoard.clickOnTriangleAndLogut();
 
     }
+    @Then("user should be able to logout successfully")
+    public void user_should_be_able_to_logout_successfully() {
+//        homePage.verifyUserIsOnHomePage();
+    }
 
+    @Given("user is already logged in")
+    public void userIsAlreadyLoggedIn() {
+        homePage.verifyUserIsOnHomePage();
+        homePage.enterUserName();
+        homePage.enterPassword();
+        homePage.clickLoginButton();
+        dashBoard.verifyUserIsOnDashBoardPage();
 
+    }
 }

@@ -9,7 +9,7 @@ public class HomePage extends Utils {
     By _usernameField = By.cssSelector("input#txtUsername");
     By _password = By.cssSelector("input#txtPassword");
     By _loginButton = By.cssSelector("input#btnLogin");
-    By _loginPanel = By.cssSelector("div#logInPanelHeading");
+    By _loginPanel = By.xpath("//*[@id=\"logInPanelHeading\"]");
 
     public void enterUserName() {
         typeText(_usernameField, loadProp.getProperty("adminUsername"));
@@ -24,10 +24,8 @@ public class HomePage extends Utils {
     }
 
     public void verifyUserIsOnHomePage(){
-        Assert.assertTrue(
-                driver.getCurrentUrl().equalsIgnoreCase(loadProp.getProperty("url")) &&
-                        getText(_loginPanel).equalsIgnoreCase("LOGIN Panel")
-                );
+        waitForVisible(_loginPanel,20);
+        Assert.assertTrue(getTextFromElement(_loginPanel).equalsIgnoreCase("LOGIN Panel"), "Error: Login panel not found");
     }
 
 }
