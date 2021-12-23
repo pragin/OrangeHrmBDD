@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BrowserManager extends BasePage{
 //    Decide if browser during runtime / hardcoded
-    String browserName = "chrome";
+    String browserName = "edge";
 //    String browserName = System.getProperty("browser");
 
     Boolean inCloud = false;
@@ -73,6 +73,7 @@ public class BrowserManager extends BasePage{
             }
 
         }else {
+
             if(browserName.equalsIgnoreCase("chrome")){
                 System.setProperty("webdriver.chrome.driver","src/test/java/drivers/chromedriver.exe");
                 driver = new ChromeDriver();
@@ -96,7 +97,7 @@ public class BrowserManager extends BasePage{
     }
 
     public void closeBrowser(){
-        driver.close();
+//        driver.close();
     }
 
 

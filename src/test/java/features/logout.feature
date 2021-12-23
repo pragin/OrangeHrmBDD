@@ -1,5 +1,5 @@
 Feature: Log out
-  @test
+#  @test
   Scenario: As a registered user, I should be able to logout from the dashboard
 
     Given user is already logged in

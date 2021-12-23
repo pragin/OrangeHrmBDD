@@ -6,9 +6,15 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Utils extends BrowserManager{
 
-
+//  Used to click on different menu items
+    public static void clickOnMenuItem(String menuItem){
+        clickOnElement(By.linkText(menuItem));
+    }
 //    Return text from an element
     public static String getTextFromElement(By by){
         return driver.findElement(by).getText();
@@ -31,9 +37,20 @@ public class Utils extends BrowserManager{
         return driver.findElement(by);
     }
 
+    public static String getCurrentTimeStamp(){
+        Date date = new Date();
+        SimpleDateFormat spf = new SimpleDateFormat("ddMMyyhhmmss");
+        return spf.format(date);
+    }
+
     public static void waitForVisible(By by, int timeInSeconds){
         WebDriverWait wait = new WebDriverWait(driver, timeInSeconds);
         wait.until(ExpectedConditions.visibilityOf(getElement(by)));
 
+    }
+
+    public static void waitForClickable(By by, int timeInSeconds){
+        WebDriverWait wait = new WebDriverWait(driver, timeInSeconds);
+        wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 }

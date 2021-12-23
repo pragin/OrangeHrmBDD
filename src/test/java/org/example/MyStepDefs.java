@@ -1,6 +1,7 @@
 package org.example;
 
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,6 +10,9 @@ public class MyStepDefs {
 
     HomePage homePage = new HomePage();
     DashBoard dashBoard = new DashBoard();
+    PIM pim = new PIM();
+    AddEmployee addEmployee = new AddEmployee();
+    ViewPersonalDetails viewPersonalDetails = new ViewPersonalDetails();
 
     @Given("user is on homepage")
     public void user_is_on_homepage() {
@@ -17,12 +21,12 @@ public class MyStepDefs {
 
     @Then("user enters username")
     public void user_enters_username() {
-        homePage.enterUserName();
+        homePage.enterAdminUserName();
     }
 
     @Then("user enters password")
     public void user_enters_password() {
-        homePage.enterPassword();
+        homePage.enterAdminPassword();
     }
 
     @Then("user clicks on Login button")
@@ -34,11 +38,12 @@ public class MyStepDefs {
     public void user_is_successfully_logged_in() {
         dashBoard.verifyUserIsOnDashBoardPage();
     }
+
     @When("user clicks on logout link")
     public void user_clicks_on_logout_link() {
-        dashBoard.clickOnTriangleAndLogut();
-
+        dashBoard.clickOnTriangleAndLogout();
     }
+
     @Then("user should be able to logout successfully")
     public void user_should_be_able_to_logout_successfully() {
 //        homePage.verifyUserIsOnHomePage();
@@ -47,10 +52,58 @@ public class MyStepDefs {
     @Given("user is already logged in")
     public void userIsAlreadyLoggedIn() {
         homePage.verifyUserIsOnHomePage();
-        homePage.enterUserName();
-        homePage.enterPassword();
+        homePage.enterAdminUserName();
+        homePage.enterAdminPassword();
         homePage.clickLoginButton();
         dashBoard.verifyUserIsOnDashBoardPage();
+    }
 
+    @When("user hover the mouse on PIM menu item")
+    public void user_hover_the_mouse_on_pim_menu_item() {
+        pim.hoverOnPimMenu();
+    }
+
+    @When("user clicks {string} sub item")
+    public void user_clicks_sub_item(String menuItem) {
+        Utils.clickOnMenuItem(menuItem);
+    }
+
+    @Then("user should see Add Employee form")
+    public void user_should_see_add_employee_form() {
+        addEmployee.verifyUserIsOnAddEmployeePage();
+    }
+
+    @When("user clicks on save button")
+    public void user_clicks_on_save_button() {
+        addEmployee.clickOnSaveBtn();
+    }
+
+    @Then("user should see the personal Details section")
+    public void user_should_see_the_personal_details_section() {
+        viewPersonalDetails.verifyEmployeeAddedSuccessfully();
+    }
+
+    @When("user fill Add employee form")
+    public void userFillAddEmployeeForm() {
+        addEmployee.FillAddEmployeeForm();
+    }
+
+    @Given("employee is added successfully")
+    public void employeeIsAddedSuccessfully() {
+    }
+
+    @When("new employee enters username")
+    public void newEmployeeEntersUsername() {
+        homePage.enterEmployeeUserName();
+    }
+
+    @And("new employee enters password")
+    public void newEmployeeEntersPassword() {
+        homePage.enterEmployeePassword();
+    }
+
+    @Then("new employee should be logged in successfully")
+    public void newEmployeeShouldBeLoggedInSuccessfully() {
+        dashBoard.verifyNewEmployeeSuccessfullyLoggedIn();
     }
 }
