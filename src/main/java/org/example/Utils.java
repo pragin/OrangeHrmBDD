@@ -46,7 +46,11 @@ public class Utils extends BrowserManager{
     public static void waitForVisible(By by, int timeInSeconds){
         WebDriverWait wait = new WebDriverWait(driver, timeInSeconds);
         wait.until(ExpectedConditions.visibilityOf(getElement(by)));
+    }
 
+    public static void waitUntilPresent(int timeInSeconds){
+        WebDriverWait wait = new WebDriverWait(driver, timeInSeconds);
+        wait.until(ExpectedConditions.alertIsPresent());
     }
 
     public static void waitForClickable(By by, int timeInSeconds){

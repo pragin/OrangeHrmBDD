@@ -1,5 +1,6 @@
 Feature: Add user
-@test
+
+  @test
   Scenario: As an admin user, I should be able to add new users
 
     Given user is already logged in

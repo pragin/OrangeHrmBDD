@@ -13,6 +13,8 @@ public class MyStepDefs {
     PIM pim = new PIM();
     AddEmployee addEmployee = new AddEmployee();
     ViewPersonalDetails viewPersonalDetails = new ViewPersonalDetails();
+    ViewEmployeeList viewEmployeeList = new ViewEmployeeList();
+
 
     @Given("user is on homepage")
     public void user_is_on_homepage() {
@@ -105,5 +107,40 @@ public class MyStepDefs {
     @Then("new employee should be logged in successfully")
     public void newEmployeeShouldBeLoggedInSuccessfully() {
         dashBoard.verifyNewEmployeeSuccessfullyLoggedIn();
+    }
+
+    @Then("user should be able to see Employee information form")
+    public void userShouldBeAbleToSeeEmployeeInformationForm() {
+        viewEmployeeList.verifyUserIsOnViewEmployeeList();
+    }
+
+    @When("user enters employee name")
+    public void userEntersEmployeeName() {
+        viewEmployeeList.enterEmployeeName();
+    }
+
+    @And("clicks on search button")
+    public void clicksOnSearchButton() {
+        viewEmployeeList.clickOnSearch();
+    }
+
+    @And("select the employee that needs to be deleted")
+    public void selectTheEmployeeThatNeedsToBeDeleted() {
+        viewEmployeeList.selectEmployee();
+    }
+
+    @And("clicks on delete button")
+    public void clicksOnDeleteButton() {
+        viewEmployeeList.clickOnDeleteBtn();
+    }
+
+    @And("clicks on ok button")
+    public void clicksOnOkButton() {
+        viewEmployeeList.confirmDelete();
+    }
+
+    @Then("employee should be deleted successfully")
+    public void employeeShouldBeDeletedSuccessfully() {
+        viewEmployeeList.verifyEmployeeHasBeenDeletedSuccessfully();
     }
 }
